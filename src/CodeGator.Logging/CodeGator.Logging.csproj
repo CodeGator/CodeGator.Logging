@@ -7,6 +7,8 @@
     <Description>Logging extensions used by various CodeGator solutions</Description>
     <PackageIcon>packageDefaultIcon-128x128.png</PackageIcon>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageProjectUrl>https://github.com/CodeGator/CodeGator.Logging</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/CodeGator/CodeGator.Logging</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

@@ -1,6 +1,7 @@
 ## CodeGator.Logging: 
 ---
 
+[![Build Status](https://dev.azure.com/codegator/CodeGator.Logging/_apis/build/status%2FCodeGator.CodeGator.Logging?branchName=main)](https://dev.azure.com/codegator/CodeGator.Logging/_build/latest?definitionId=114&branchName=main)
 
 #### What does it do?
 This package contains logging extensions used by various CodeGator solutions.
@@ -17,9 +18,6 @@ PM> Install-Package CodeGator.Logging
 If you've spotted a bug in the code please use the project Issues [HERE](https://github.com/CodeGator/CodeGator.Logging/issues)
 
 We also have a discussion group [HERE](https://github.com/CodeGator/CodeGator.Logging/discussions)
-
-#### Is there any documentation?
-There is developer documentation [HERE](https://codegator.github.io/CodeGator.Logging/)
 
 ##### We also blog about projects like this one on our website, [HERE](http://www.codegator.com)
 ---
