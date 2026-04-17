@@ -4,15 +4,10 @@ namespace Microsoft.Extensions.Logging;
 #pragma warning restore IDE0130 // Namespace does not match folder structure
 
 /// <summary>
-/// This class contains a bootstrap logger.
+/// This class provides a minimal bootstrap <see cref="ILogger"/> before DI wiring.
 /// </summary>
 public sealed class BootstrapLogger : ILogger
 {
-    // *******************************************************************
-    // Fields.
-    // *******************************************************************
-
-    #region Fields
 
     /// <summary>
     /// This field contains the factory for this bootstrap logger.
@@ -20,7 +15,7 @@ public sealed class BootstrapLogger : ILogger
     internal static ILoggerFactory? _loggerFactory;
 
     /// <summary>
-    /// This field contains the singleton instance for this bootstrap logger
+    /// This field contains the singleton instance for this bootstrap logger.
     /// </summary>
     internal static BootstrapLogger _instance = null!;
 
@@ -29,17 +24,8 @@ public sealed class BootstrapLogger : ILogger
     /// </summary>
     internal readonly ILogger? _innerLogger;
 
-    #endregion
-
-    // *******************************************************************
-    // Constructors.
-    // *******************************************************************
-
-    #region Constructors
-
     /// <summary>
-    /// This constructor creates a new instance of the <see cref="BootstrapLogger"/>
-    /// class.
+    /// This constructor initializes a new instance of the BootstrapLogger class.
     /// </summary>
     [DebuggerStepThrough]
     private BootstrapLogger()
@@ -47,18 +33,10 @@ public sealed class BootstrapLogger : ILogger
         _innerLogger = _loggerFactory?.CreateLogger<BootstrapLogger>();
     }
 
-    #endregion
-
-    // *******************************************************************
-    // Public methods.
-    // *******************************************************************
-
-    #region Public methods
-    
     /// <summary>
-    /// This method returns the singleton instance of <see cref="BootstrapLogger"/>
+    /// This method returns the shared bootstrap <see cref="ILogger"/> instance.
     /// </summary>
-    /// <returns>The singleton instance of <see cref="BootstrapLogger"/></returns>
+    /// <returns>The singleton bootstrap logger.</returns>
     [DebuggerStepThrough]
     public static ILogger Instance()
     {
@@ -74,10 +52,8 @@ public sealed class BootstrapLogger : ILogger
         return _instance;
     }
 
-    // *******************************************************************
-
     /// <summary>
-    /// This method sets the minimum logger level to information. 
+    /// This method sets the minimum logger level to information.
     /// </summary>
     /// <remarks>
     /// <para>
@@ -101,10 +77,8 @@ public sealed class BootstrapLogger : ILogger
         }
     }
 
-    // *******************************************************************
-
     /// <summary>
-    /// This method sets the minimum logger level to warning. 
+    /// This method sets the minimum logger level to warning.
     /// </summary>
     /// <remarks>
     /// <para>
@@ -128,10 +102,8 @@ public sealed class BootstrapLogger : ILogger
         }
     }
 
-    // *******************************************************************
-
     /// <summary>
-    /// This method sets the minimum logger level to error. 
+    /// This method sets the minimum logger level to error.
     /// </summary>
     /// <remarks>
     /// <para>
@@ -155,10 +127,8 @@ public sealed class BootstrapLogger : ILogger
         }
     }
 
-    // *******************************************************************
-
     /// <summary>
-    /// This method sets the minimum logger level to critical. 
+    /// This method sets the minimum logger level to critical.
     /// </summary>
     /// <remarks>
     /// <para>
@@ -182,10 +152,8 @@ public sealed class BootstrapLogger : ILogger
         }
     }
 
-    // *******************************************************************
-
     /// <summary>
-    /// This method sets the minimum logger level to debug. 
+    /// This method sets the minimum logger level to debug.
     /// </summary>
     /// <remarks>
     /// <para>
@@ -209,10 +177,8 @@ public sealed class BootstrapLogger : ILogger
         }
     }
 
-    // *******************************************************************
-
     /// <summary>
-    /// This method sets the minimum logger level to trace. 
+    /// This method sets the minimum logger level to trace.
     /// </summary>
     /// <remarks>
     /// <para>
@@ -236,21 +202,15 @@ public sealed class BootstrapLogger : ILogger
         }
     }
 
-    #endregion
-
-    // *******************************************************************
     // ILogger methods.
-    // *******************************************************************
-
-    #region ILogger methods
 
     /// <summary>
-    /// This method begins a logical operation scope.
+    /// This method begins a logical operation scope on the inner logger.
     /// </summary>
     /// <typeparam name="TState">The type of the state to begin scope for.</typeparam>
     /// <param name="state">The identifier for the scope.</param>
-    /// <returns>An <see cref="System.IDisposable"/> that ends the logical 
-    /// operation scope on dispose.</returns>
+    /// <returns>An <see cref="IDisposable"/> that ends the scope on dispose, or null
+    /// when the inner logger is absent.</returns>
     [DebuggerStepThrough]
     IDisposable ILogger.BeginScope<TState>(
         TState state
@@ -261,31 +221,26 @@ public sealed class BootstrapLogger : ILogger
 #pragma warning restore CS8603 // Possible null reference return.
     }
 
-    // *******************************************************************
-    
     /// <summary>
-    /// This method checks if the given <paramref name="logLevel"/> is enabled.
+    /// This method reports whether the inner logger enables a log level.
     /// </summary>
-    /// <param name="logLevel">Level to be checked.</param>
-    /// <returns>true if enabled.</returns>
+    /// <param name="logLevel">The level to check.</param>
+    /// <returns>true when the inner logger enables the level; otherwise false.</returns>
     [DebuggerStepThrough]
     bool ILogger.IsEnabled(LogLevel logLevel)
     {
         return _innerLogger?.IsEnabled(logLevel) ?? false;
     }
 
-    // *******************************************************************
-
     /// <summary>
-    /// This method writes a log entry.
+    /// This method writes a log entry through the inner logger.
     /// </summary>
     /// <typeparam name="TState">The type of the object to be written.</typeparam>
-    /// <param name="logLevel">Entry will be written on this level.</param>
-    /// <param name="eventId">Id of the event.</param>
-    /// <param name="state">The entry to be written. Can be also an object.</param>
-    /// <param name="exception">The exception related to this entry.</param>
-    /// <param name="formatter">Function to create a System.String message 
-    /// of the state and exception.</param>
+    /// <param name="logLevel">The level for the entry.</param>
+    /// <param name="eventId">The event identifier.</param>
+    /// <param name="state">The entry payload.</param>
+    /// <param name="exception">The related exception, if any.</param>
+    /// <param name="formatter">Builds the message from state and exception.</param>
     [DebuggerStepThrough]
     void ILogger.Log<TState>(
         LogLevel logLevel,
@@ -303,6 +258,4 @@ public sealed class BootstrapLogger : ILogger
             formatter
             );
     }
-
-    #endregion
 }
