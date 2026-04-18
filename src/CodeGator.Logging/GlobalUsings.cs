@@ -1,1 +1,13 @@
 ﻿global using System.Diagnostics;
+global using System.Diagnostics.CodeAnalysis;
+global using System.ComponentModel.DataAnnotations;
+global using System.Text;
+global using CodeGator.Logging;
+global using CodeGator.Logging.Options;
+global using CodeGator.Logging.Redactors;
+global using Microsoft.Extensions.Compliance.Classification;
+global using Microsoft.Extensions.Compliance.Redaction;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Logging;
+global using Microsoft.Extensions.Options;

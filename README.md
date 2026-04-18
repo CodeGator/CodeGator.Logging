@@ -23,7 +23,6 @@ If you've spotted a bug in the code please use the project Issues [HERE](https:/
 
 We also have a discussion group [HERE](https://github.com/CodeGator/CodeGator.Logging/discussions)
 
-##### We also blog about projects like this one on our website, [HERE](http://www.codegator.com)
 ---
 #### Disclaimer
 This package and it's contents are experimental in nature. There is no official support. Use at your own risk.
