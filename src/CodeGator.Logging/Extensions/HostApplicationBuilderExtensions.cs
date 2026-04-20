@@ -61,9 +61,12 @@ public static partial class HostApplicationBuilderExtensions
         builder.Logging.ClearProviders();
 
         builder.Logging.AddJsonConsole(options =>
-            options.JsonWriterOptions = new()
             {
-                Indented = true
+                options.IncludeScopes = true;
+                options.JsonWriterOptions = new()
+                {
+                    Indented = true
+                };
             }
         );
 
