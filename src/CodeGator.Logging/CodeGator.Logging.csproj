@@ -33,7 +33,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CodeGator.Logging.Abstractions" Version="1.1.3" />
+    <PackageReference Include="CodeGator.Logging.Abstractions" Version="1.1.5" />
     <PackageReference Include="Microsoft.Extensions.Compliance.Redaction" Version="10.5.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.6" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="10.0.6" />

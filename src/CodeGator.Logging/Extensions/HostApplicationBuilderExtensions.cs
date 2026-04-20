@@ -7,24 +7,27 @@ namespace Microsoft.Extensions.Hosting;
 #pragma warning restore IDE0130 // Namespace does not match folder structure
 
 /// <summary>
-/// This class utility contains extension methods related to the <see cref="IHostApplicationBuilder"/>
-/// type.
+/// This class contains extensions for <see cref="IHostApplicationBuilder"/>.
 /// </summary>
+/// <remarks>
+/// <para>
+/// This class contains extension methods related to the
+/// <see cref="IHostApplicationBuilder"/> type.
+/// </para>
+/// </remarks>
 public static partial class HostApplicationBuilderExtensions
 {
 
     /// <summary>
-    /// This method adds services required to support <c>CodeGator</c> logging 
-    /// extensions.
+    /// This method adds CodeGator logging services to a host application builder.
     /// </summary>
     /// <typeparam name="T">The host application builder type.</typeparam>
     /// <param name="builder">The builder to use for the operation.</param>
-    /// <param name="bootstrapLogger">The (optional) bootstrap logger to 
-    /// use for the operation.</param>
-    /// <returns>The value of the <paramref name="builder"/> parameter,
-    /// for chaining method calls together, Fluent style.</returns>
-    /// <exception cref="ArgumentException">This exception is thrown whenever
-    /// one or more arguments are missing, or invalid.</exception>
+    /// <param name="bootstrapLogger">The optional bootstrap logger to use.</param>
+    /// <returns>The builder for chaining method calls together.</returns>
+    /// <exception cref="InvalidOperationException">
+    /// This exception is thrown whenever the logger extension options cannot be bound.
+    /// </exception>
     /// <remarks>
     /// <para>
     /// <c>CodeGator</c> logging extensions include:
@@ -112,6 +115,10 @@ public static partial class HostApplicationBuilderExtensions
 
 
 
+    /// <summary>
+    /// This method logs entry into the AddCodeGatorLoggingExtensions workflow.
+    /// </summary>
+    /// <param name="logger">The logger to use for the operation.</param>
     [LoggerMessage(
         EventId = 1000,
         Level = LogLevel.Debug,
@@ -120,6 +127,10 @@ public static partial class HostApplicationBuilderExtensions
         ILogger logger
         );
 
+    /// <summary>
+    /// This method logs exit from the AddCodeGatorLoggingExtensions workflow.
+    /// </summary>
+    /// <param name="logger">The logger to use for the operation.</param>
     [LoggerMessage(
         EventId = 1001,
         Level = LogLevel.Debug,

@@ -1,8 +1,8 @@
-﻿
+
 namespace CodeGator.Logging.Redactors;
 
 /// <summary>
-/// This class is a redactor that obfuscates sensitive data using '*' characters.
+/// This class obfuscates sensitive data using '*' characters.
 /// </summary>
 internal sealed class StarRedactor : Redactor
 {
@@ -33,5 +33,4 @@ internal sealed class StarRedactor : Redactor
     }
 
     #endregion
-
 }
